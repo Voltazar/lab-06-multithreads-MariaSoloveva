@@ -32,8 +32,8 @@ script:
 - ./tools/polly/bin/polly --reconfig --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold" CMAKE_EXPORT_COMPILE_COMMANDS=ON
 - ( for file in $files; do echo $file; clang-check -analyze $file -p _builds/default-Release || exit; done );
 # tests
+- export CTEST_OUTPUT_ON_FAILURE=true
 - ./tools/polly/bin/polly --reconfig --test --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
-
 # CMAKE_EXE_LINKER need to bugfix: https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
 
 notifications:
