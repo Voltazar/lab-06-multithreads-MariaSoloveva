@@ -37,14 +37,14 @@ SHA256("1234") = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846
 ```cpp
 #include <picosha2.h>
 
-std::vector<unsigned char> data_vector{...}; // вектор
-std::string hash = picosha2::hash256_hex_string(data_vector);
+const std::vector<unsigned char> data_vector{...}; // вектор
+const std::string hash = picosha2::hash256_hex_string(data_vector);
 
-std::array<unsigned char, 4> data_array{...}; // массив
-std::string hash = picosha2::hash256_hex_string(data_array);
+const std::array<unsigned char, 4> data_array{...}; // массив
+const std::string hash = picosha2::hash256_hex_string(data_array);
 
-unsigned char data_c_array[N] = {...}; // c-массив
-std::string hash = picosha2::hash256_hex_string(data_c_array, data_c_array + N);
+const unsigned char data_c_array[N] = {...}; // c-массив
+const std::string hash = picosha2::hash256_hex_string(data_c_array, data_c_array + N);
 ```
 
 Пример тривиального логирования с помощью библиотеки `boost::log`:
