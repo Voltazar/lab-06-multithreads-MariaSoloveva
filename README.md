@@ -59,8 +59,6 @@ int main(int, char*[])
     BOOST_LOG_TRIVIAL(warning) << "A warning severity message";
     BOOST_LOG_TRIVIAL(error) << "An error severity message";
     BOOST_LOG_TRIVIAL(fatal) << "A fatal severity message";
-
-    return 0;
 }
 ```
 
