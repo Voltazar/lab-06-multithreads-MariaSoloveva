@@ -24,6 +24,7 @@ add_executable(tests
 
 target_include_directories(tests 
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/picosha2
 )
 target_link_libraries(tests GTest::main)
 

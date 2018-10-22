@@ -4,3 +4,6 @@
 [submodule "tools/gate"]
 	path = tools/gate
 	url = https://github.com/hunter-packages/gate.git
+[submodule "picosha2"]
+	path = picosha2
+	url = https://github.com/okdshin/PicoSHA2.git
