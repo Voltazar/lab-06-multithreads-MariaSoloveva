@@ -17,8 +17,8 @@ SHA256("1234") = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846
 На текущий момент самым эффективным решением данных задач является метод полного перебора.
 
 Требуется:
-- организовать перебор случайных входных данных (прообразов) для функции SHA-256 с целью получения значения хэш-функции, удовлетворяющего следующему виду:
-`XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX0000`, где `X`- произвольный HEX-символ, а `0` - ноль, т.е. значение хэш-функции должно заканчиваться на `N=4`нулей, а остальные символы могут быть произвольными;
+- организовать перебор случайных входных данных (прообразов) для функции **SHA-256** с целью получения значения хэш-функции, удовлетворяющего следующему виду:
+`XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX0000`, где `X`- произвольный **HEX**-символ, а `0` - ноль, т.е. значение хэш-функции должно заканчиваться на `N=4`нулей, а остальные символы могут быть произвольными;
 - вычисления проводить в `M` потоках, где `M`- максильное число одновременно выполняемых потоков, поддерживаемых используемым оборудованием;
 - при обнаружении значения хэш-функции требуемого вида вывести его в `Log` (консоль+файл) и продолжить вычисления;
 - для логгирования использовать библиотеку `boost::log` (документацию и примеры использования можно найти [тут](https://www.boost.org/doc/libs/1_63_0/libs/log/doc/html/log/tutorial.html#log.tutorial.trivial));
@@ -37,17 +37,17 @@ SHA256("1234") = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846
 ```cpp
 #include <picosha2.h>
 
-std::vector<unsigned char> data_vector(...); // вектор
+std::vector<unsigned char> data_vector{...}; // вектор
 std::string hash = picosha2::hash256_hex_string(data_vector);
 
-std::array<unsigned char, 4> data_array(...); // массив
+std::array<unsigned char, 4> data_array{...}; // массив
 std::string hash = picosha2::hash256_hex_string(data_array);
 
 unsigned char data_c_array[N] = {...}; // c-массив
 std::string hash = picosha2::hash256_hex_string(data_c_array, data_c_array + N);
 ```
 
-Пример тривиального логирования с помощью библиотеки `boost:log`:
+Пример тривиального логирования с помощью библиотеки `boost::log`:
 ```cpp
 #include <boost/log/trivial.hpp>
 
@@ -72,7 +72,7 @@ logging::add_file_log // расширенная настройка
 (
     keywords::file_name = "log_%N.log",
     keywords::rotation_size = 10 * 1024 * 1024, 
-    keywords::time_based_rotation = sinks::file::rotation_at_time_point(0, 0, 0),
+    keywords::time_based_rotation = sinks::file::rotation_at_time_point{0, 0, 0},
     keywords::format = "[%TimeStamp%]: %Message%"
 );
 ```
