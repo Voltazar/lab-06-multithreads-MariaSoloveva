@@ -17,8 +17,8 @@ string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 hunter_add_package(GTest)
-hunter_add_package(Boost COMPONENTS system log)
-find_package(Boost CONFIG REQUIRED  system log)
+hunter_add_package(Boost COMPONENTS system log thread)
+find_package(Boost CONFIG REQUIRED  system log thread)
 find_package(GTest CONFIG REQUIRED)
 
 add_executable(${EXECUTABLE_NAME} main.cpp)
@@ -30,14 +30,15 @@ target_include_directories(${EXECUTABLE_NAME}
 
 target_link_libraries(${EXECUTABLE_NAME} GTest::main
         Boost::system
-        Boost::log)
+        Boost::log
+        Boost::thread)
 
-target_link_libraries(${EXECUTABLE_NAME}
-        Boost::system
-        Boost::log)
+#target_link_libraries(${EXECUTABLE_NAME}
+#        Boost::system
+#       Boost::log)
 add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
 
-target_link_libraries(${EXECUTABLE_NAME} GTest::main)
+#target_link_libraries(${EXECUTABLE_NAME} GTest::main)
 
 enable_testing()
 add_test(NAME unit_tests COMMAND ${EXECUTABLE_NAME})
