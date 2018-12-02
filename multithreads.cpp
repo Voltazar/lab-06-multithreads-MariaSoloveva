@@ -1,3 +1,4 @@
+//  Copyright 2018 <masha12749@yandex.ru>
 #include <algorithm>
 #include <iostream>
 #include <exception>
