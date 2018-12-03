@@ -16,6 +16,8 @@ string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 hunter_add_package(GTest)
+hunter_add_package(Boost COMPONENTS system log thread)
+find_package(Boost CONFIG REQUIRED system log thread)
 find_package(GTest CONFIG REQUIRED)
 
 add_executable(tests multithreads.cpp
@@ -25,7 +27,10 @@ target_include_directories(tests
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third-party/picosha2
 )
-target_link_libraries(tests GTest::main)
+target_link_libraries(tests GTest::main template
+        Boost::system
+        Boost::log
+        Boost::thread)
 
 enable_testing()
 add_test(NAME unit_tests COMMAND tests) 
