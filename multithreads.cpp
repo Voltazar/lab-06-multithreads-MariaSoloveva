@@ -30,8 +30,8 @@ void Logging()
     boost::log::core::get()->add_sink(sink);
 
     boost::log::core::get()->set_filter
-            (boost::log::trivial::severity >= boost::log::trivial::trace
-                    ||  boost::log::trivial::severity >= boost::log::trivial::info);
+    (boost::log::trivial::severity >= boost::log::trivial::trace
+    ||  boost::log::trivial::severity >= boost::log::trivial::info);
 }
 
 
